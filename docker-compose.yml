@@ -1,0 +1,19 @@
+services:
+  image-upload-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: image-upload-service
+    ports:
+      - "3030:3030"
+    volumes:
+      - ./uploads:/usr/src/app/uploads  # Persistencia para los archivos subidos
+    env_file:
+      - ./.env
+    restart: unless-stopped
+    networks:
+      - image-upload-network
+
+networks:
+  image-upload-network:
+    driver: bridge
