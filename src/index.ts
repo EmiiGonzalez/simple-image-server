@@ -1,14 +1,16 @@
 import express from "express";
-import { config } from "./config/config";
+import { config, corsConfig } from "./config/config";
 import uploadRoutes from "./routes/upload";
 import { getLimiter } from "./middlewares/rateLimit";
 import morgan from "morgan";
+import cors from "cors";
 
 const app = express();
 
 // Configuración de Express
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors(corsConfig));
 // Middleware de Morgan
 app.use(morgan("common"));
 // Servir archivos estáticos con rate limiting para GET
