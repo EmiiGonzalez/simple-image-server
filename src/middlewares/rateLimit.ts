@@ -14,5 +14,4 @@ export const getLimiter = rateLimit({
   max: 500, // 100 solicitudes por token
   keyGenerator: (req: Request) => req.token || 'anonymous',
   message: { message: 'Demasiadas solicitudes, intentá de nuevo en 10 minutos' },
-  skip: (req: Request) => !req.token, // Omite si no hay token
 });
