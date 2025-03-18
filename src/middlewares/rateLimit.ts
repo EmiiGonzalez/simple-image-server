@@ -10,18 +10,18 @@ export const postLimiter = rateLimit({
 });
 
 export const getLimiter = rateLimit({
-  windowMs: 60 * 1000, // 10 minutos
+  windowMs: 60 * 1000, // 100 cada 1 min
   max: 100, // 100 solicitudes por token
   keyGenerator: (req: Request) => req.token || 'anonymous',
   message: { message: 'Demasiadas solicitudes, intentá de nuevo en 10 minutos' },
 });
 
-const limiter = rateLimit({
+export const limiter = rateLimit({
 	windowMs: 60 * 1000, // 10 minutes
 	limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
 	standardHeaders: 'draft-7', // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
-	keyGenerator: (req) => req.ip || "anonymous",
+	keyGenerator: (req) => req.token || req.ip || 'anonymous',
   handler: (req, res) => {
     res.status(429).json({ message: 'Demasiadas solicitudes, intentá de nuevo en 10 minutos' });
   },
