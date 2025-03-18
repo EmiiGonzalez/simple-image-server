@@ -14,7 +14,7 @@ export const config = {
 
 export const corsConfig: CorsOptions = {
   origin: process.env.ORIGIN
-    ? process.env.ORIGIN.split(",")
+    ? process.env.ORIGIN.trim().split(",")
     : "http://localhost:5173",
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
