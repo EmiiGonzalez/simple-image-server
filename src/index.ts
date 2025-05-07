@@ -22,7 +22,7 @@ app.use("/upload", uploadRoutes);
 
 // Manejador para rutas no mapeadas (404)
 app.use((req, res) => {
-  res.status(404).json({ message: "Ruta no encontrada", status: 404 });
+  res.status(404).json({ message: `Ruta: ${req.url} no encontrada`, status: 404 });
 });
 
 // Iniciar el servidor
