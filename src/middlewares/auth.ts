@@ -16,6 +16,11 @@ export const authenticateJWT = (req: Request, res: Response, next: NextFunction)
       res.status(403).json({ message: 'Token inválido' });
       return;
     }
+
+    //extraigo la información del usuario del token
+    const { sub } = jwt.decode(token) as { sub: string };
+
+    req.id = sub; // Guardamos el ID del usuario en la request
     req.user = user;
     req.token = token; // Guardamos el token para rate limiting
     next();

@@ -19,12 +19,13 @@ router.post(
   async (req: Request, res: Response): Promise<void> => {
     try {
       const file = req.file;
+      const id = req.id;
       if (!file) {
         res.status(400).json({ message: 'No se subió ninguna imagen', status: 400 });
         return;
       }
 
-      const url = await FileService.uploadFile(file);
+      const url = await FileService.uploadFile(file, id);
       
       // Respuesta exitosa con información adicional opcional
       res.json({ 
