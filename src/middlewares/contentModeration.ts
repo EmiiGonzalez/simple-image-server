@@ -35,7 +35,7 @@ export const contentModerationMiddleware = async (
     }
 
     // Configurar el modelo Gemini Pro Vision
-    const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
     // Convertir buffer a formato base64
     const imageData = {
